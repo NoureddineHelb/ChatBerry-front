@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {CommonModule} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ChatType} from "../interfaces/chat.type";
+import {ChatType} from "../intetrfaces/chat.type";
 import {MatError, MatFormField, MatHint, MatLabel} from "@angular/material/form-field";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
