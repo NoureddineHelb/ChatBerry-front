@@ -1,0 +1,64 @@
+/* Global Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Main Container */
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Content Container */
+.content {
+    text-align: center;
+    padding: 20px;
+}
+
+/* Heading Styles */
+h1 {
+    font-size: 3rem;
+    margin-bottom: 40px;
+}
+
+.gradient-text {
+    background-image: linear-gradient(90deg, #55A7DA, #3B3B8F, #903091, #C61987, #EA0779);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+h4 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+/* Form Field Styles */
+mat-form-field {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* Select Styles */
+mat-select {
+    width: 100%;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+/* Error Message Styles */
+.mat-error {
+    color: #f44336; /* Rouge */
+    font-size: 1rem;
+}
+
+/* Hint Styles */
+.mat-hint {
+    font-size: 1rem;
+    color: #666;
+}
