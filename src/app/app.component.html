@@ -1,6 +1,10 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
 <main class="main">
+    <!-- Section animation
+    <div class="bubbles">
+        <span *ngFor="let index of animationIndexes" [style.--i]="index"></span>
+    </div>
+     Section Title and choose type -->
     <div class="content">
         <h1>Welcome to <span class="gradient-text">{{title}}</span></h1>
 
@@ -18,21 +22,21 @@
                 <mat-hint>{{chatTypeControl.value?.type}}</mat-hint>
             </mat-form-field>
         </div>
-        <!-- Message container section just HTML -->
+
+        <!-- Section Message container just HTML -->
         <div class="chat-container">
-            <!-- code pour afficher les messages -->
-            <p>Messages here</p>
+            <div *ngFor="let message of messages">
+                <p [ngClass]="{ 'sent-message': message.type === 'sent', 'received-message': message.type === 'received' }">{{ message.content }}</p>
+            </div>
         </div>
 
         <div class="input-container">
-            <input placeholder="Enter your message" />
-            <button >Send</button>
+            <input placeholder="Enter your message" [(ngModel)]="userInput" />
+            <button (click)="sendMessage(userInput)">Send</button>
         </div>
-
 
     </div>
 </main>
-
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 <router-outlet />
