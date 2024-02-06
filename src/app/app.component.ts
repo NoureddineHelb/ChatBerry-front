@@ -6,7 +6,7 @@ import {ChatType} from "../intetrfaces/chat.type";
 import {MatError, MatFormField, MatHint, MatLabel} from "@angular/material/form-field";
 import {MatOption} from "@angular/material/autocomplete";
 import {MatSelect} from "@angular/material/select";
-import {HttpClient} from "@angular/common/http";
+import {ChatService} from "./chat.service";
 
 @Component({
   selector: 'app-root',
@@ -18,13 +18,10 @@ import {HttpClient} from "@angular/common/http";
 export class AppComponent {
   title = 'ChatBerry';
   userInput: string = '';
-  messages: { content: string, type: 'sent' | 'received' }[] = [];
+  messages: { content: string, type: 'You' | 'Berry' }[] = [];
   animationIndexes: number[];
-  backUrl: string;
 
-  constructor(private http: HttpClient) {
-    this.backUrl = 'http://localhost:3000/api/sendMessage';
-    // initialisation avec des veleurs randoms
+  constructor(private chatService: ChatService) {
     this.animationIndexes = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
   }
 
@@ -36,19 +33,15 @@ export class AppComponent {
     { name: 'Programmer', type: 'Code Interpreter!' },
   ];
 
-  // Gestion des messages
   sendMessage(message: string) {
-    console.log('Message à envoyer : ', message);
+    this.userInput = ''; // réinitialiser le champ
 
-    const body = { message: message };
-    const headers = { 'Content-Type': 'application/json' };
-
-    this.http.post(this.backUrl, body, { headers: headers }).subscribe(response => {
-      console.log('Réponse du serveur : ', response);
-      this.messages.push({ content: message, type: 'sent' });
-    }, error => {
-      console.error('Erreur lors de l\'envoi de la requête : ', error);
-    });
+    this.chatService.sendMessage(message).subscribe(
+        (response: any) => {
+          this.messages.push({ content: message, type: 'You' });
+          this.messages.push({ content: response.response + '', type: 'Berry' });
+        }
+    );
   }
 
 }
