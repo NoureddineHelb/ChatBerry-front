@@ -155,6 +155,17 @@ mat-select {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'un contour d'ombre à l'extérieur du conteneur */
 }
 
+/* Align user messages to the right and bot messages to the left */
+.sent-message {
+    text-align: right;
+    margin-right: 0; /* Clear default margin */
+}
+
+.received-message {
+    text-align: left;
+    margin-left: 0; /* Clear default margin */
+}
+
 /* Style des messages */
 .chat-container p {
     padding: 10px;
@@ -202,6 +213,7 @@ body{
 }
 
 .circles{
+    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;

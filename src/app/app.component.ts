@@ -31,15 +31,29 @@ export class AppComponent{
   chatTypeControl = new FormControl<ChatType | null>(null, Validators.required);
   selectFormControl = new FormControl('', Validators.required);
   chatTypes: ChatType[] = [
-    { name: 'Assistant', type: 'Helpful assistant' },
-    { name: 'Programmer', type: 'Code Interpreter!' },
+    { name: 'Assistant', type: 'Helpful assistant', message: "You are a helpful assistant" },
+    { name: 'Programmer', type: 'Code Interpreter!', message: "You are an expert in code interpreter" },
   ];
-  dotCount: number = 10;
+
+  ngOnInit() { // quand on change de type de bot
+    this.chatTypeControl.valueChanges.subscribe((newValue) => {
+      if (newValue) {
+        if (newValue.name == 'Assistant')
+          this.messages.push({ content: 'I am a helpful assistant, how can I help you?', type: 'Berry' });
+        else
+          this.messages.push({ content: 'I am an expert in code interpreter, how can I help you?', type: 'Berry' });
+
+        this.chatService.sendMessage(newValue.message).subscribe(
+            (response: any) => {}
+        );
+      }
+    });
+  }
+
 
   sendMessage(message: string) {
     if (message.trim() !== '') {
-      this.userInput = ''; // réinitialiser le champ
-
+      this.userInput = ''; // reset le champ
       this.chatService.sendMessage(message).subscribe(
           (response: any) => {
             this.messages.push({ content: message, type: 'You' });
