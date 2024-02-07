@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
-
 /* Global Styles */
 * {
     box-sizing: border-box;
@@ -25,15 +24,20 @@ body {
 .content {
     z-index: 1;
     text-align: center;
-    padding: 40px;
+    padding: 20px;
+    max-width: 600px; /* Nouvelle règle pour limiter la largeur sur les grands écrans */
+    width: 100%; /* Assure une largeur de 100% même sur les petits écrans */
+    margin: 0 auto; /* Centre le contenu sur la page */
 }
 
 /* Heading Styles */
 h1 {
     font-size: 3rem;
-    margin-bottom: 20px;
     font-weight: 400;
     color: #ffffff;
+    line-height: 1; /* pour separer les lignes quand on colle les deux coté */
+    margin-bottom: 20px;
+    word-wrap: break-word; /* divise les mots si il faut */
 }
 
 .gradient-text {
@@ -59,6 +63,7 @@ h4 {
     font-size: 1.8rem;
     margin-bottom: 30px;
     color: #ffffff;
+    word-wrap: break-word;
 }
 
 /* Form Field Styles */
@@ -91,12 +96,12 @@ mat-select {
 .input-container {
     display: flex;
     align-items: center;
-    margin-top: 30px;
+    margin-top: 20px; /* Réduction de l'espace entre les éléments */
 }
 
 .input-container input {
     flex: 1;
-    padding: 12px;
+    padding: 10px; /* Réduction de la taille du padding */
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 10px;
@@ -107,7 +112,7 @@ mat-select {
 .input-container button {
     background-color: #595959;
     color: #fff;
-    padding: 10px 20px;
+    padding: 10px 15px; /* Réduction de la taille du padding */
     border: none;
     border-radius: 5px;
     font-size: 1.2rem;
@@ -133,7 +138,7 @@ mat-select {
     margin-left: 50%; /* Pour éviter que le texte se superpose avec les messages envoyés */
 }
 
-/* Style des messages *//* Chat Container */
+/* Style des messages */
 .chat-container {
     background-color: #ffffff;
     border: 1px solid #ccc;
@@ -148,7 +153,7 @@ mat-select {
 /* Scrollable container for messages */
 .message-scroll {
     min-height: 50vh;
-    max-height: 70vh; /* Utilisation de 70% de la hauteur de la fenêtre */
+    max-height: 50vh; /* Utilisation de 70% de la hauteur de la fenêtre */
     max-width: 80vh;
     overflow-y: auto; /* Activation du défilement vertical */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'un contour d'ombre à l'extérieur du conteneur */
