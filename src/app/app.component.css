@@ -1,15 +1,13 @@
 /* Global Styles */
-*{
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: white;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f4f4;
     min-height: 100vh;
 }
 
@@ -19,31 +17,46 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    flex-direction: column;
-
+    background-color: #f4f4f4; /* Subtle background */
 }
 
 /* Content Container */
 .content {
     text-align: center;
-    padding: 20px;
+    padding: 40px;
 }
 
 /* Heading Styles */
 h1 {
     font-size: 3rem;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
+    font-weight: 400;
+    color: #333;
 }
 
 .gradient-text {
-    background-image: linear-gradient(90deg, #55A7DA, #3B3B8F, #903091, #C61987, #EA0779);
+    background: linear-gradient(90deg, #d1528c, #8b32ca);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 h4 {
     font-size: 1.8rem;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    color: #555;
 }
 
 /* Form Field Styles */
@@ -56,7 +69,7 @@ mat-form-field {
 /* Select Styles */
 mat-select {
     width: 100%;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     color: #333;
 }
 
@@ -69,89 +82,99 @@ mat-select {
 /* Hint Styles */
 .mat-hint {
     font-size: 1rem;
-    color: #666;
-}
-
-/* Chat Container */
-.chat-container {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin: 20px 0;
-    padding: 250px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    overflow: auto; /* ajustement auto */
-    max-height: 300px; /* pour pas que ça sois trop gros*/
+    color: #aaa;
 }
 
 /* Input Container */
 .input-container {
     display: flex;
     align-items: center;
+    margin-top: 30px;
 }
 
 .input-container input {
     flex: 1;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    font-size: 1.2rem;
 }
 
 .input-container button {
+    background-color: #d1528c;
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #EA0779; /* rose de ama */
-    color: #ffffff;
-    font-size: 1rem;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .input-container button:hover {
-    background-color: #C61987; /* Vcontour un peu plus fonce du rose */
+    background-color: #8b32ca;
 }
 
-/*Section animation*/
-.container{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+/* Chat section */
+/* CSS pour les messages envoyés par l'utilisateur */
+.sent-message {
+    text-align: left;
+    margin-right: 50%; /* Pour éviter que le texte se superpose avec les messages reçus */
 }
 
-.bubbles{
-    position: relative;
-    display: flex;
-    z-index: -100;
+/* CSS pour les messages reçus du bot */
+.received-message {
+    text-align: right;
+    margin-left: 50%; /* Pour éviter que le texte se superpose avec les messages envoyés */
 }
 
-.bubbles span{
-    position: relative;
-    width: 30px;
-    height: 30px;
-    background: #4fc3dc;
-    margin: 0 4px;
-    border-radius: 50%;
-    box-shadow: 0 0 0 10px #4fc3dc44,
-    0 0 50px #4fc3dc,
-    0 0 100px #4fc3dc;
-    animation: animate 15s linear infinite;
-    animation-duration: calc(290s / var(--i));
+/* Style des messages *//* Chat Container */
+.chat-container {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 20px 0;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Pour cacher le débordement */
+    max-width: 100%; /* Pour s'adapter à la largeur de son conteneur parent */
 }
 
-.bubbles span:nth-child(even){
-    background: #ff2d75;
-    box-shadow: 0 0 0 10px #ff2d7544,
-    0 0 50px #ff2d75,
-    0 0 100px #ff2d75;
+/* Scrollable container for messages */
+.message-scroll {
+    min-height: 50vh;
+    max-height: 70vh; /* Utilisation de 70% de la hauteur de la fenêtre */
+    max-width: 80vh;
+    overflow-y: auto; /* Activation du défilement vertical */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ajout d'un contour d'ombre à l'extérieur du conteneur */
 }
-@keyframes animate {
-    0%{
-        transform: translateY(100vh) scale(0);
-    }
-    100%{
-        transform: translateY(-10vh) scale(1);
-    }
+
+/* Style des messages */
+.chat-container p {
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px;
+    display: inline-block;
+    max-width: 80%; /* Ajustement de la largeur maximale des messages */
+    text-align: justify; /* Pour justifier le texte */
 }
+
+/* Style des messages envoyés par l'utilisateur */
+.sent-message p {
+    background-color: #EA0779;
+    color: white;
+}
+
+/* Style des messages reçus du bot */
+.received-message p {
+    background-color: #55A7DA;
+    color: white;
+}
+
+
+/*background*/
+
+

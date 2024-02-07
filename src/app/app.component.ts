@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {RouterLink, RouterLinkActive, RouterOutlet} from '@angular/router';
 import {CommonModule} from "@angular/common";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
@@ -15,12 +15,14 @@ import {ChatService} from "./chat.service";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
+export class AppComponent{
   title = 'ChatBerry';
   userInput: string = '';
   messages: { content: string, type: 'You' | 'Berry' }[] = [];
   animationIndexes: number[];
 
+  
+  
   constructor(private chatService: ChatService) {
     this.animationIndexes = Array.from({ length: 30 }, () => Math.floor(Math.random() * 100));
   }
@@ -32,16 +34,20 @@ export class AppComponent {
     { name: 'Assistant', type: 'Helpful assistant' },
     { name: 'Programmer', type: 'Code Interpreter!' },
   ];
+  dotCount: number = 10;
 
   sendMessage(message: string) {
-    this.userInput = ''; // réinitialiser le champ
+    if (message.trim() !== '') {
+      this.userInput = ''; // réinitialiser le champ
 
-    this.chatService.sendMessage(message).subscribe(
-        (response: any) => {
-          this.messages.push({ content: message, type: 'You' });
-          this.messages.push({ content: response.response + '', type: 'Berry' });
-        }
-    );
+      this.chatService.sendMessage(message).subscribe(
+          (response: any) => {
+            this.messages.push({ content: message, type: 'You' });
+            this.messages.push({ content: response.response + '', type: 'Berry' });
+          }
+      );
+    }
+
   }
 
 }

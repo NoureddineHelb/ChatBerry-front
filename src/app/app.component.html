@@ -1,10 +1,4 @@
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <main class="main">
-    <!-- Section animation
-    <div class="bubbles">
-        <span *ngFor="let index of animationIndexes" [style.--i]="index"></span>
-    </div>
-     Section Title and choose type -->
     <div class="content">
         <h1>Welcome to <span class="gradient-text">{{title}}</span></h1>
 
@@ -25,18 +19,18 @@
 
         <!-- Section Message container just HTML -->
         <div class="chat-container">
-            <div *ngFor="let message of messages">
-                <p [ngClass]="{ 'sent-message': message.type === 'You', 'received-message': message.type === 'Berry' }">{{ message.type + ' : ' + message.content }}</p>
+            <div class="message-scroll">
+                <div *ngFor="let message of messages" [ngClass]="{'sent-message': message.type === 'You', 'received-message': message.type === 'Berry'}">
+                    <p>{{ message.content }}</p>
+                </div>
             </div>
         </div>
 
         <div class="input-container">
-            <input placeholder="Enter your message" [(ngModel)]="userInput" />
-            <button (click)="sendMessage(userInput)">Send</button>
+            <input class="message-input" placeholder="Enter your message" [(ngModel)]="userInput" (keyup.enter)="sendMessage(userInput)" />
+            <button class="send-button" (click)="sendMessage(userInput)">Send</button>
         </div>
 
     </div>
+    <router-outlet />
 </main>
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-
-<router-outlet />
