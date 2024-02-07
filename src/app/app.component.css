@@ -1,6 +1,4 @@
-
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
-
 
 /* Global Styles */
 * {
@@ -25,6 +23,7 @@ body {
 
 /* Content Container */
 .content {
+    z-index: 1;
     text-align: center;
     padding: 40px;
 }
@@ -34,7 +33,7 @@ h1 {
     font-size: 3rem;
     margin-bottom: 20px;
     font-weight: 400;
-    color: #333;
+    color: #ffffff;
 }
 
 .gradient-text {
@@ -59,7 +58,7 @@ h1 {
 h4 {
     font-size: 1.8rem;
     margin-bottom: 30px;
-    color: #555;
+    color: #ffffff;
 }
 
 /* Form Field Styles */
@@ -85,7 +84,7 @@ mat-select {
 /* Hint Styles */
 .mat-hint {
     font-size: 1rem;
-    color: #aaa;
+    color: #ffffff;
 }
 
 /* Input Container */
@@ -106,7 +105,7 @@ mat-select {
 }
 
 .input-container button {
-    background-color: #d1528c;
+    background-color: #595959;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -118,7 +117,7 @@ mat-select {
 }
 
 .input-container button:hover {
-    background-color: #8b32ca;
+    background-color: #777777;
 }
 
 /* Chat section */
@@ -178,13 +177,13 @@ mat-select {
 
 /* Style des messages envoyés par l'utilisateur */
 .sent-message p {
-    background-color: #EA0779;
+    background-color: #a4a4a4;
     color: white;
 }
 
 /* Style des messages reçus du bot */
 .received-message p {
-    background-color: #55A7DA;
+    background-color: #383838;
     color: white;
 }
 
@@ -206,14 +205,13 @@ body{
 }
 
 .area{
-    background: #EE82EE;
-    background: -webkit-linear-gradient(to left, #55A7DA, #55A7DA);
+    background: #343434;
+    background: -webkit-linear-gradient(to left, white, #343434);
     width: 100%;
     height:100vh;
 }
 
 .circles{
-    z-index: -1;
     position: absolute;
     top: 0;
     left: 0;
