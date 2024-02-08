@@ -11,9 +11,9 @@ export class ChatService {
   constructor(private http: HttpClient) { }
 
   sendMessage(message: string): any {
-    const body = { message: message };
+    const body = { message: message};
     const headers = { 'Content-Type': 'application/json' };
 
-    return this.http.post(this.backUrl, body, { headers: headers });
+    return this.http.post(this.backUrl, body,  { headers: headers });
   }
 }
