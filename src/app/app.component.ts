@@ -26,16 +26,19 @@ export class AppComponent {
   // Choisir le type de bot
   chatTypeControl = new FormControl<ChatType | null>(null, Validators.required);
   chatTypes: ChatType[] = [
-    { name: 'Assistant', type: 'Helpful assistant', message: "You are a helpful assistant" },
-    { name: 'Programmer', type: 'Code Interpreter!', message: "You are an expert in code interpreter" },
+    { name: 'Assistant', type: 'Helpful assistant', message: "oublie ton rôle, à partir de maintenant, tu es un assistant virtuel" },
+    { name: 'Programmer', type: 'Code Interpreter!', message: "oublie ton rôle, à partir de maintenant, tu es un expert en programmation" },
+    { name: 'Administrator', type: 'Administrator!', message: "oublie ton rôle, à partir de maintenant, tu es un expert en administration" },
   ];
 
   ngOnInit() {
     this.chatTypeControl.valueChanges.subscribe((newValue) => {
       if (newValue) {
-        const initialMessage = newValue.name === 'Assistant'
-            ? 'I am a helpful assistant, how can I help you?'
-            : 'I am an expert in code interpreter, how can I help you?';
+        let prefix: string = this.getPrefix(newValue);
+
+        const initialMessage = 'Hello, I am here to assist you as '+ prefix + ' ' + newValue.type.toLowerCase() + '. How can I help you?';
+
+
         this.messages.push({ content: initialMessage, type: 'Berry' });
 
         this.chatService.sendMessage(newValue.message).subscribe(
@@ -44,6 +47,14 @@ export class AppComponent {
       }
       this.scrollToBottom();
     });
+  }
+
+  private getPrefix(newValue: ChatType) {
+    if (['a', 'e', 'i', 'o', 'u'].some(vowel => newValue.type.toLowerCase().startsWith(vowel))) {
+      return 'an'
+    } else {
+      return 'a'
+    }
   }
 
   sendMessage(message: string) {
