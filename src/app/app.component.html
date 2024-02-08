@@ -32,7 +32,7 @@
 
             <!-- Section Message container just HTML -->
             <div class="chat-container">
-                <div class="message-scroll">
+                <div class="message-scroll" #messageScroll>
                     <div *ngFor="let message of messages" [ngClass]="{'sent-message': message.type === 'You', 'received-message': message.type === 'Berry'}">
                         <p>{{ message.content }}</p>
                     </div>
