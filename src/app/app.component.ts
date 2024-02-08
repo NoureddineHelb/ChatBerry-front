@@ -18,6 +18,7 @@ import {MatSelect} from "@angular/material/select";
 export class AppComponent {
   title = 'ChatBerry';
   userInput: string = '';
+  sendMessageButton: string= 'send';
   messages: { content: string, type: 'You' | 'Berry' }[] = [];
   @ViewChild('messageScroll', { static: true }) messageScrollContainer?: ElementRef;
 
@@ -30,6 +31,7 @@ export class AppComponent {
     { name: 'Programmer', type: 'Code Interpreter!', message: "oublie ton rôle, à partir de maintenant, tu es un expert en programmation" },
     { name: 'Accountant', type: 'Expert accountant!', message: "oublie ton rôle, à partir de maintenant, tu es un expert comptable" },
   ];
+
 
   ngOnInit() {
     this.chatTypeControl.valueChanges.subscribe((newValue) => {
@@ -57,17 +59,23 @@ export class AppComponent {
   sendMessage(message: string) {
     if (message.trim() !== '') {
       this.userInput = ''; // Reset the input field
+      this.sendMessageButton = 'is typing ...';
+
+      this.messages.push({ content: message, type: 'You' });
+
       this.chatService.sendMessage(message).subscribe(
           (response: any) => {
-            this.messages.push({ content: message, type: 'You' });
             setTimeout(() => {
               this.messages.push({ content: response.response + '', type: 'Berry' });
               this.scrollToBottom();
+              this.sendMessageButton = 'send';
             }, 100);
           }
       );
     }
     this.scrollToBottom();
+
+
   }
 
   scrollToBottom() {

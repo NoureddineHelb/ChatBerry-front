@@ -28,6 +28,7 @@
                     <mat-error *ngIf="chatTypeControl.hasError('required')">Please choose a type</mat-error>
                     <mat-hint>{{chatTypeControl.value?.type}}</mat-hint>
                 </mat-form-field>
+
             </div>
 
             <!-- Section Message container just HTML -->
@@ -41,7 +42,7 @@
 
             <div class="input-container">
                 <input class="message-input" placeholder="Enter your message" [(ngModel)]="userInput" (keyup.enter)="sendMessage(userInput)" />
-                <button class="send-button" (click)="sendMessage(userInput)">Send</button>
+                <button class="send-button" (click)="sendMessage(userInput)">{{sendMessageButton}}</button>
             </div>
 
         </div>
