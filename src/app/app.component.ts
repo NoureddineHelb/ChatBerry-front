@@ -28,17 +28,14 @@ export class AppComponent {
   chatTypes: ChatType[] = [
     { name: 'Assistant', type: 'Helpful assistant', message: "oublie ton rôle, à partir de maintenant, tu es un assistant virtuel" },
     { name: 'Programmer', type: 'Code Interpreter!', message: "oublie ton rôle, à partir de maintenant, tu es un expert en programmation" },
-    { name: 'Administrator', type: 'Administrator!', message: "oublie ton rôle, à partir de maintenant, tu es un expert en administration" },
+    { name: 'Accountant', type: 'Expert accountant!', message: "oublie ton rôle, à partir de maintenant, tu es un expert comptable" },
   ];
 
   ngOnInit() {
     this.chatTypeControl.valueChanges.subscribe((newValue) => {
       if (newValue) {
         let prefix: string = this.getPrefix(newValue);
-
         const initialMessage = 'Hello, I am here to assist you as '+ prefix + ' ' + newValue.type.toLowerCase() + '. How can I help you?';
-
-
         this.messages.push({ content: initialMessage, type: 'Berry' });
 
         this.chatService.sendMessage(newValue.message).subscribe(
