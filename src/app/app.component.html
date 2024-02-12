@@ -44,7 +44,6 @@
                 <input class="message-input" placeholder="Enter your message" [(ngModel)]="userInput" (keyup.enter)="sendMessage(userInput)" />
                 <button class="send-button" (click)="sendMessage(userInput)">{{sendMessageButton}}</button>
             </div>
-
         </div>
         <router-outlet />
     </main>

@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { ChatType } from "../intetrfaces/chat.type";
 import {FormControl, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import { ChatService } from "./chat.service";
@@ -15,7 +15,7 @@ import {MatSelect} from "@angular/material/select";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'ChatBerry';
   userInput: string = '';
   sendMessageButton: string= 'send';
