@@ -42,10 +42,12 @@
 
             <div class="input-container">
                 <input class="message-input" placeholder="Enter your message" [(ngModel)]="userInput" (keyup.enter)="sendMessage(userInput)" />
-                <button class="send-button" (click)="sendMessage(userInput)">{{sendMessageButton}}</button>
+                <button class="send-button" (click)="sendMessage(userInput)">
+                    <span *ngIf="!isTyping">Send</span>
+                    <span *ngIf="isTyping">Typing ...</span>
+                </button>
             </div>
         </div>
         <router-outlet />
     </main>
-
 </div >

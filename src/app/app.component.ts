@@ -18,8 +18,8 @@ import {MatSelect} from "@angular/material/select";
 export class AppComponent implements OnInit{
   title = 'ChatBerry';
   userInput: string = '';
-  sendMessageButton: string= 'send';
   messages: { content: string, type: 'You' | 'Berry' }[] = [];
+  isTyping: boolean = false;
   @ViewChild('messageScroll', { static: true }) messageScrollContainer?: ElementRef;
 
   constructor(private chatService: ChatService) { }
@@ -32,8 +32,7 @@ export class AppComponent implements OnInit{
     { name: 'Accountant', type: 'Expert accountant!', message: "oublie ton rôle, à partir de maintenant, tu es un expert comptable" },
   ];
 
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.chatTypeControl.valueChanges.subscribe((newValue) => {
       if (newValue) {
         let prefix: string = this.getPrefix(newValue);
@@ -59,7 +58,8 @@ export class AppComponent implements OnInit{
   sendMessage(message: string) {
     if (message.trim() !== '') {
       this.userInput = ''; // Reset the input field
-      this.sendMessageButton = 'is typing ...';
+      this.isTyping = true;
+      console.log("il écris :",this.isTyping)
 
       this.messages.push({ content: message, type: 'You' });
 
@@ -68,14 +68,14 @@ export class AppComponent implements OnInit{
             setTimeout(() => {
               this.messages.push({ content: response.response + '', type: 'Berry' });
               this.scrollToBottom();
-              this.sendMessageButton = 'send';
+              this.isTyping = false;
+              console.log("il écris :",this.isTyping)
             }, 100);
           }
       );
+
     }
     this.scrollToBottom();
-
-
   }
 
   scrollToBottom() {
